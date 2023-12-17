@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:revo_dol/reusable_content/reusable_textfield.dart';
+import 'package:revo_dol/custom_widgets/reusable_textfield.dart';
+import 'package:revo_dol/utils/constants.dart';
+import 'package:revo_dol/utils/styles.dart';
 
 class LogInPage extends StatefulWidget {
   LogInPage({super.key});
@@ -23,14 +24,13 @@ class _LogInPageState extends State<LogInPage> {
               Container(
                 margin: const EdgeInsets.only(
                     top: 100, right: 20, left: 20, bottom: 20),
-                child: const Image(
-                  image: AssetImage('assets/images/test_logo.png'),
-                  width: 200,
-                  height: 100,
+                child: const CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage(logoImg),
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 30, right: 20, left: 20),
+                margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
                 child: ReusableTextField(
                   prefixIcon: Icons.person_rounded,
                   labelForTextField: 'Enter Your Email',
@@ -45,25 +45,32 @@ class _LogInPageState extends State<LogInPage> {
                 margin: const EdgeInsets.only(top: 10, right: 20, left: 20),
                 child: ReusableTextField(
                   prefixIcon: Icons.lock_outline_rounded,
-                  labelForTextField: 'Enter Your Email',
+                  labelForTextField: 'Enter Your Password',
                   textEditingController: _pwTextController,
                   errorText: '',
                   textInputType: TextInputType.text,
                   textInputAction: TextInputAction.next,
-                  obscureText: false,
+                  obscureText: true,
                 ),
               ),
               SizedBox(
                 width: 300,
                 height: 50,
                 child: ElevatedButton(
+                  style: logInPageElevatedButtonStyle,
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context, '/', (_) => false);
                   },
-                  child: const Text("LOGIN"),
+                  child: Text(
+                    "LOG IN",
+                    style: kLogInElevatedButtonTextStyle,
+                  ),
                 ),
-              )
+              ),
+              Container(
+                  margin: const EdgeInsets.only(top: 10, right: 20, left: 20),
+                  child: const Text("Forget Password ?")),
             ],
           ),
         ),

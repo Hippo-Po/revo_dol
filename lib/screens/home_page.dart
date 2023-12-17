@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 // TODO: Import google_mobile_ads.dart
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:revo_dol/utils/constants.dart';
+import 'package:revo_dol/utils/styles.dart';
 
 import '../helpers/ad_helpers.dart';
 
@@ -25,8 +27,44 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+                decoration: const BoxDecoration(color: kDrawerBackgroundColor),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const CircleAvatar(
+                      radius: 40,
+                      backgroundImage: AssetImage(logoImg),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const SizedBox(
+                      width: 300,
+                      height: 10,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        child: LinearProgressIndicator(
+                          value: 0.5,
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Supporter Pink',
+                      style: kDrawerTextStyle,
+                    ),
+                  ],
+                )),
+          ],
+        ),
+      ),
       appBar: AppBar(
-        title: const Text('Home '),
+        title: const Text('Home'),
       ),
       body: SafeArea(
         child: Stack(
@@ -51,34 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-/*      body: FutureBuilder<InitializationStatus>(
-        future: _initGoogleMobileAds(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            const SizedBox(
-              width: 48.0,
-              height: 48.0,
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            print("No Showing");
-          } else if (snapshot.hasData) {
-            if (_bannerAd != null) {
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  width: _bannerAd!.size.width.toDouble(),
-                  height: _bannerAd!.size.height.toDouble(),
-                  child: AdWidget(ad: _bannerAd!),
-                ),
-              );
-            }
-          }
-          return const Column(
-            children: [],
-          );
-        },
-      ),*/
     );
   }
 

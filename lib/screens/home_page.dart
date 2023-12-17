@@ -108,8 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
         onAdFailedToLoad: (ad, error) {
           // Releases an ad resource when it fails to load
           ad.dispose();
-          debugPrint(
-              'Ad load failed (code=${error.code} message=${error.message})');
         },
       ),
     ).load();
